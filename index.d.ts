@@ -21,6 +21,7 @@ declare module "react-native-raw-bottom-sheet" {
     };
     keyboardAvoidingViewEnabled?: boolean;
     children?: React.ReactNode;
+    customDraggableIcon?: React.ReactNode;
   };
 
   export default class RBSheet extends Component<RBSheetProps> {

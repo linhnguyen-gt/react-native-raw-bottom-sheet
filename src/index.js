@@ -1,13 +1,13 @@
-import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Component } from "react";
 import {
-  View,
+  Animated,
   KeyboardAvoidingView,
   Modal,
-  TouchableOpacity,
-  Animated,
   PanResponder,
-  Platform
+  Platform,
+  TouchableOpacity,
+  View
 } from "react-native";
 import styles from "./style";
 
@@ -91,6 +91,7 @@ class RBSheet extends Component {
     const {
       animationType,
       closeOnDragDown,
+      customDraggableIcon,
       dragFromTopOnly,
       closeOnPressMask,
       closeOnPressBack,
@@ -127,14 +128,12 @@ class RBSheet extends Component {
             {...(!dragFromTopOnly && this.panResponder.panHandlers)}
             style={[panStyle, styles.container, { height: animatedHeight }, customStyles.container]}
           >
-            {closeOnDragDown && (
-              <View
-                {...(dragFromTopOnly && this.panResponder.panHandlers)}
+            { customDraggableIcon ? customDraggableIcon : <View
+                {...(dragFromTopOnly && closeOnDragDown && this.panResponder.panHandlers)}
                 style={styles.draggableContainer}
               >
                 <View style={[styles.draggableIcon, customStyles.draggableIcon]} />
-              </View>
-            )}
+              </View>}
             {children}
           </Animated.View>
         </KeyboardAvoidingView>
